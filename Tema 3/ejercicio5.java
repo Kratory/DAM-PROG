@@ -27,7 +27,11 @@ public class ejercicio5{
             return resultado;
         }
     }
-
+    /**
+     * Muestra y suma los numeros de una sucesión geométrica
+     * @param x  el numero que se elevará durante la sucesión
+     * @param n  cantidad de numeros a mostrar en la sucesión
+     */
     public static void sGeometrica(int x, int n){
         double resultado = 0;
         for(int i = 0; i < n; i++){

@@ -51,8 +51,12 @@ public class ejercicio13{
      * @param gc coordenadas proporcionadas por quien intenta atacar.
      */
     public static boolean check(int c, int gc){
-        if(gc == c) return true;
-        else return false;
+        if(gc == c) {
+            return true;
+        }  
+        else{
+            return false;
+        } 
     }
    
 
