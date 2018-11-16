@@ -12,15 +12,13 @@ public class ejercicio4{
         if(exponente < 0){
             base = 1/base;
             exponente = exponente * -1;
-            resultado = base;
-            exponente --;
+            resultado = 1;
             for(int i = 0; i < exponente; i++){
                 resultado *= base;
             }
             return resultado;
         }else {
-            resultado = base;
-            exponente --;
+            resultado = 1;
             for(int i = 0; i < exponente; i++){
                 resultado *= base;
             }

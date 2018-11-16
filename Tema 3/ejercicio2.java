@@ -7,7 +7,7 @@ public class ejercicio2{
      * @return true si el año es bisiesto, false si no.
      */
     public static boolean bisiesto(int ano){
-        if(ano % 4 == 0){
+        if(ano % 4 == 0 && ano % 100 !=0){
             return true;
         } 
         else if(ano % 100 == 0 && ano % 400 == 0){
