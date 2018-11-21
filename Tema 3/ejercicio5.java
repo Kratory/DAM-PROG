@@ -34,7 +34,7 @@ public class ejercicio5{
      */
     public static void sGeometrica(int x, int n){
         double resultado = 0;
-        for(int i = 0; i < n; i++){
+        for(int i = 0; i <= n; i++){
             if(resultado != 0){
                 resultado += potencia(x, i);
                 System.out.printf("%.1f ", resultado);

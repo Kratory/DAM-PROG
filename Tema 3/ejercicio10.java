@@ -18,8 +18,7 @@ public class ejercicio10{
         int col = 14;
         System.out.printf("Partido %10s \n", "Resultado");
         for(int i = 0; i < col; i++){
-            if(i < 10) System.out.printf("%d: %10s\n", i, quiniela());
-            else System.out.printf("%d: %9s\n", i, quiniela());
+            System.out.printf("%4d: %8s\n", i, quiniela());
         }
     }
 }

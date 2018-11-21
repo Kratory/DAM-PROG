@@ -2,7 +2,7 @@ import java.util.Random;
 public class ejercicio12{
     /**
      *  Genera dos numeros aleatorios [1-6] y devuelve la suma de ambos.
-     *  @return la suma de ambo numeros.
+     *  @return la suma de ambos numeros.
      */
     public static int tirada(){
         int min = 1; int max = 6;

@@ -5,7 +5,7 @@ public class ejercicio3{
     /**
      * Tangente
      * 
-     * @param numero
+     * @param numero Ángulo en radianes
      * @return Tangente de numero
      */
     public static double tangente(double numero){
@@ -22,6 +22,19 @@ public class ejercicio3{
         return ang * Math.PI /180;
     }
 
+    public static char salida(){
+        Scanner sc = new Scanner(System.in);
+        String respuesta; char letra = ' ';
+        do{
+            respuesta = sc.nextLine().toUpperCase();
+            letra = respuesta.charAt(0);
+            if(letra != 'N' && letra != 'S')
+                 System.out.println("Error!");
+        }while(letra != 'N' && letra != 'S');
+        
+        return letra;
+    }
+
     public static void main(String args[]){
         Scanner sc = new Scanner(System.in);
         String respuesta; char letra = ' ';
@@ -31,7 +44,8 @@ public class ejercicio3{
         do{
             respuesta = sc.nextLine().toUpperCase();
             letra = respuesta.charAt(0);
-            if(letra != 'G' && letra != 'R') System.out.println("Error!");
+            if(letra != 'G' && letra != 'R') 
+                System.out.println("Error!");
         }while(letra != 'G' && letra != 'R');
 
         boolean grados = (letra == 'G');
@@ -56,11 +70,8 @@ public class ejercicio3{
                     double cos = Math.cos(ang);
                     System.out.printf("El cosendo de %f es: %f", ang, cos);
                     System.out.println("\n¿Continuar?");
-                    do{
-                        respuesta = sc.nextLine().toUpperCase();
-                        letra = respuesta.charAt(0);
-                        if(letra != 'N' && letra != 'S') System.out.println("Error!");
-                    }while(letra != 'N' && letra != 'S');
+                    
+                    salida();
                 break;
                 case 2:
                     System.out.println("Introduce un ángulo: ");
@@ -71,11 +82,8 @@ public class ejercicio3{
                     double sin = Math.sin(ang);
                     System.out.printf("El seno de %f es: %f", ang, sin);
                     System.out.println("\n¿Continuar?");
-                    do{
-                        respuesta = sc.nextLine().toUpperCase();
-                        letra = respuesta.charAt(0);
-                        if(letra != 'N' && letra != 'S') System.out.println("Error!");
-                    }while(letra != 'N' && letra != 'S');
+                    
+                    salida();
                 break;
                 case 3:
                     System.out.println("Introduce un ángulo: ");
@@ -86,11 +94,8 @@ public class ejercicio3{
                     double tan = tangente(ang);
                     System.out.printf("La tangente de %f es: %f", ang, tan);
                     System.out.println("\n¿Continuar?");
-                    do{
-                        respuesta = sc.nextLine().toUpperCase();
-                        letra = respuesta.charAt(0);
-                        if(letra != 'N' && letra != 'S') System.out.println("Error!");
-                    }while(letra != 'N' && letra != 'S');
+                    
+                    salida();
                 break;
                 case 4:
                     letra = 'N';

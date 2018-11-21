@@ -16,7 +16,7 @@ public class ejercicio1{
      * Es positivo?
      * 
      * @param n Numero negativo/positivo
-     * @return 'N' si es negativo, 'P' si no lo es.
+     * @return 'N' si es negativo o 0, 'P' si no lo es.
      */
     public static char numero(int n){
 

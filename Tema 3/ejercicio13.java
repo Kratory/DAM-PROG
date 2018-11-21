@@ -8,7 +8,7 @@ public class ejercicio13{
      *  Adicionalmente, se usa para intentar encontrar el barco del jugador.
      *  @return las coordenadas generadas aleatoriamente, como un numero de 3 cifras. (Los primeros dos digitos son la fila, el tercero la columna.)
      */
-    public static int CPU_setUP(){
+    public static int CPU_setUP(boolean flag){
         Random r = new Random();
         int min = 65; int max = 75;
         int barcoCPU_1 = r.nextInt((max - min) + 1) + min;
@@ -63,33 +63,53 @@ public class ejercicio13{
     public static void main(String[] args) throws InterruptedException{
         Scanner sc = new Scanner(System.in);
         String res; boolean gameOver = false;
+        Random r = new Random();
+        int min = 0; int max = 0;
+
+        System.out.println("\u001b[2J\u001b[H");
+        System.out.println("--HUNDIR LA FLOTA--\n");
+        System.out.println("1. Barco de 3 casillas (CPU)");
+        System.out.println("2. Barco de 1 casilla (CPU Y PLAYER)");
+        
+        int ans = 0;
+        do{
+            System.out.println("\nIntroduce el numero de la opcion deseada:");
+            ans = Integer.parseInt(sc.nextLine());
+            if(ans != 1 && ans != 2) System.out.println("Error, opción incorrecta!");
+        }while(ans != 1 && ans != 2);
 
         System.out.println("PREPARACION");
-        int cpu = CPU_setUP();
-        int player = setUP();
+        if(ans == 1){
+            direccion = r.nextInt((max - min) + 1) + min;
+            int cpu = CPU_setUP(true);
+        }
+        else{
+            int cpu = CPU_setUP(false);
+            int player = setUP();
 
-        do{
-            System.out.print("\u001b[2J\u001b[H");
-            System.out.println("ATAQUE");
-            int ataque_j = setUP();
-            if(check(cpu, ataque_j)){
-                gameOver = true;
-                System.out.println("Victoria del jugador!");
-            }
-            else{
-                System.out.println("AGUA!");
-                System.out.println("\nTurno de la máquina...");
-                Thread.sleep(3000);
-                int ataque_m = CPU_setUP();
-
-                if(check(player, ataque_m)){
+            do{
+                System.out.print("\u001b[2J\u001b[H");
+                System.out.println("ATAQUE");
+                int ataque_j = setUP();
+                if(check(cpu, ataque_j)){
                     gameOver = true;
-                    System.out.println("Victoria de la máquina!");
-                }else{
+                    System.out.println("Victoria del jugador!");
+                }
+                else{
                     System.out.println("AGUA!");
-                    Thread.sleep(2000);
-                } 
-            }
-        }while(gameOver == false);
+                    System.out.println("\nTurno de la máquina...");
+                    Thread.sleep(3000);
+                    int ataque_m = CPU_setUP(false);
+
+                    if(check(player, ataque_m)){
+                        gameOver = true;
+                        System.out.println("Victoria de la máquina!");
+                    }else{
+                        System.out.println("AGUA!");
+                        Thread.sleep(2000);
+                    } 
+                }
+            }while(gameOver == false);
+        }
     }   
 }
