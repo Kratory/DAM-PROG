@@ -92,16 +92,21 @@ class Fecha{
                     mes = "diciembre";
                     break;
                 default:
-                    System.out.println("Error mes inesperado!");
+                    System.out.println("Error: mes inesperado!");
                     break;
             }
             return "" + this.dia + " de " + mes + " de " + this.ano;
         }
     }
 
-    public static int diasMes(Fecha a){
+    /**
+     * Determina cuantos días tiene un mes dado. (31, 30 o 28);
+     * @param mes Mes del que se quieren saber los dias.
+     * @return Dias que tiene el mes dado.
+     */
+    public static int diasMes(int mes){
         int max = 0;
-        switch(a.getMes()){
+        switch(mes){
             case 2:
                 max = 28;
                 break;
@@ -117,13 +122,64 @@ class Fecha{
 
         return max;
     }
-    //TO CONTINUE
+    
+    /**
+     * Redondea un objeto Fecha al formato 1/01/XXXX. No actualiza los valores del objeto, solo cuenta cuantos días hay que restrarle para redondearlo.
+     * @param a Objeto Fecha que se quiere redondear.
+     * @return Numeros de dias restados para redondear la fecha.
+     */
+    public static int roundFecha(Fecha a){
+        int dif = 0;
+        for(int i = a.getDia(); i > 1; i--){
+            dif++;
+        }
+        for(int i = a.getMes() - 1; i > 1; i--){
+            dif += diasMes(i);
+        }
+        return dif;
+    }
 
+    /** 
+     * Determina si un año dado es bisiesto o no.
+     * @param ano Año que se quiere averiguar si es bisiesto o no.
+     * @return true Cuando el año es bisiesto.
+     * @return falser Cuando el año no es bisiesto.
+     */
+    public static boolean bisiesto(int ano){
+        if(ano % 4 == 0 && ano % 100 !=0){
+            return true;
+        } 
+        else if( ano % 400 == 0){
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Calcula la diferencia en años o días (dependiendo de la bandera) entre dos fechas (Objetos Fecha)
+     * @param a Objeto Fecha para la primera fecha.
+     * @param b Objeto Fecha para la segunda fecha.
+     * @param flag Booleano que determina si se quiere obtener la diferencia en años o en días.
+     * @return La diferencia entre ambas fechas, ya sea en años o en días. 
+     */
     public static int diferencia(Fecha a, Fecha b, boolean flag){
         int diferencia;
-        if(flag){
-              
-        }else{
+        if(flag){ // Diferencia en dias
+            if(a.getAno() > b.getAno()){
+                diferencia = roundFecha(a) + (-roundFecha(b)) + ((a.getAno() - b.getAno()) * 365);
+                // ^ Dias que hicieron falta para redondear *a* menos los días que hicieron falta para redondear *b*
+                // Mas 365 por cada año restante.
+                for(int i = a.getAno(); i > b.getAno(); i--){
+                    if(bisiesto(i)) diferencia++; // Aumenta la diferencia en 1 por cada año bisiesto entre ambas fechas (incluyendolas).
+                }     
+            } 
+            else{
+                diferencia = -roundFecha(a) + roundFecha(b) + ((b.getAno() - a.getAno()) * 365);
+                for(int i = b.getAno(); i > a.getAno(); i--){
+                    if(bisiesto(i)) diferencia++;  // Aumenta la diferencia en 1 por cada año bisiesto entre ambas fechas (incluyendolas).
+                }      
+            }   
+        }else{ // Diferencia en años.
             if(a.getAno() > b.getAno())
                 diferencia = a.getAno() - b.getAno();
             else
@@ -155,6 +211,8 @@ public class Ejercicio2{
         System.out.printf("\nLa segunda fecha es %s", segunda.fechaFormateada(false));
 
         System.out.printf("\nHay una diferencia de %d años entre ambas fechas.", Fecha.diferencia(primera, segunda, false));
+
+        System.out.printf("\nHay una diferencia de %d dias entre ambas fechas.", Fecha.diferencia(primera, segunda, true));
 
     }
 }
