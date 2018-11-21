@@ -5,7 +5,7 @@ public class ejercicio3{
     /**
      * Tangente
      * 
-     * @param numero en radianes
+     * @param numero Ángulo en radianes
      * @return Tangente de numero
      */
     public static double tangente(double numero){

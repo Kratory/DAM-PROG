@@ -22,6 +22,7 @@ class Geometria{
         this.base = base;
     }
     /*------END OF CONSTRUCTORS------*/
+    
     /**
      * Calcula el area de la figura geometrica.
      * @return area 

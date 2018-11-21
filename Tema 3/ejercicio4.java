@@ -8,22 +8,19 @@ public class ejercicio4{
      * @return numero elevado
      */
     public static double potencia(double base, double exponente){
-        double resultado;
+        double resultado=1;
         if(exponente < 0){
             base = 1/base;
             exponente = exponente * -1;
-            resultado = 1;
+           
+            
+        } 
+             
             for(int i = 0; i < exponente; i++){
                 resultado *= base;
             }
             return resultado;
-        }else {
-            resultado = 1;
-            for(int i = 0; i < exponente; i++){
-                resultado *= base;
-            }
-            return resultado;
-        }
+         
     }
 
     /**
