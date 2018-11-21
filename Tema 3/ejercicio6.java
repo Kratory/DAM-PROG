@@ -13,6 +13,7 @@ public class ejercicio6{
         }
         return true;
     }
+    
     /**
      * Muestra la cantidad escogida de numeros primos.
      * @param n cantidad

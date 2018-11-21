@@ -2,7 +2,7 @@ import java.util.Scanner;
 public class ejercicio9{
     /**
      * Calcula el factorial de un número dado.
-     * @param n
+     * @param n entero
      * @return resultado.
      */
                                                         /*public static double factorial(int n){
@@ -18,9 +18,9 @@ public class ejercicio9{
 
     /**
      *  Calcula y devuelve un binomio de Newton
-     * @param n
-     * @param m
-     * @return
+     * @param n entero
+     * @param m entero
+     * @return resultado decimal
      */
     public static double newtonBin(int n, int m){
         return factorial(m) / (factorial(n) * factorial(m - n));
@@ -35,11 +35,11 @@ public class ejercicio9{
             System.out.println("Introduce variable m: ");
             m = Integer.parseInt(sc.nextLine());
 
-            if((m < 1 || n < 1) || (m > n && m != n)){
+            if((m < 1 || n < 1) || m < n){
                 System.out.println("Error, valores de n/m invalidos. (N y M > 0) (M >= N)");
             }
 
-        }while((m < 1 || n < 1) || (m > n && m != n));
+        }while((m < 1 || n < 1) || (m < n));
 
         System.out.printf("\nEl resultado del binomio de Newton para m(%d) y n(%d) es: %.2f\n", m, n, newtonBin(n, m));
     }
