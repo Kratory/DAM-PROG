@@ -315,6 +315,10 @@ class Empresa{
 }
 
 class Ejercicio3{
+    /**
+     * Submenús para la modificacion de datos tanto de directivos como de empleados.
+     * @param e Objeto Empresa que se quiere modificar.
+     */
     public static void modificarDatos(Empresa e){
         Scanner sc = new Scanner(System.in);
         int choice;
@@ -358,6 +362,10 @@ class Ejercicio3{
         }while(choice != 3);
     }
 
+    /**
+     * Submenus para mostrar uno o todos los campos de los empleados de una empresa.
+     * @param e Objeto empresa del que se quieren obtener datos.
+     */
     public static void mostrarEmpleados(Empresa e) throws InterruptedException{
         Scanner sc = new Scanner(System.in);
         int choice;
@@ -467,27 +475,5 @@ class Ejercicio3{
                     break;
             }
         }while(choice != 6);
-
-        /* 
-        // TESTEO CLASE EMPLEADO
-        Empleado e = new Empleado();
-        e.editar();
-        System.out.println("\u001b[2J\u001b[H");
-        e.mostrar();
-        System.out.println("------------------------------");
-        System.out.printf("Hacienda se lleva: %.2f\n", e.hacienda());
-        System.out.println("------------------------------");
-        // END OF CLASE EMPLEADO 
-
-        // TESTEO CLASE DIRECTIVO 
-        Directivo d = new Directivo();
-        d.editar();
-        System.out.println("\u001b[2J\u001b[H");
-        d.mostrar();
-        System.out.println("------------------------------");
-        System.out.printf("Obtiene unas ganancias de: %.2f\n", d.ganancias(1000000.0));
-        System.out.println("------------------------------");
-        // END OF CLASE DIRECTIVO 
-        */
     }
 }
