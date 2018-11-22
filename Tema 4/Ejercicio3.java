@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.lang.InterruptedException;
 class Empleado{
     private String nombre, apellidos, dni;
     private int edad;
@@ -156,6 +157,10 @@ class Directivo{
         this.nombre = ""; this.apellidos = ""; this.dni = ""; this.departamento = "";
         this.beneficios = 0;
     }
+    public Directivo(String nombre, String apellidos, String dni, String departamento, float beneficios){
+        this.nombre = nombre; this.apellidos = apellidos; this.dni = dni; this.departamento = departamento;
+        this.beneficios = beneficios;
+    }
     /*------END OF CONSTRUCTORS------*/
 
     /*-----------SETTERS-------------*/
@@ -279,10 +284,192 @@ class Directivo{
     }
 }
 
-class Ejercicio3{
-    public static void main(String[] args){
+class Empresa{
+    private Double ganancias;
+    public Directivo d;
+    public Empleado a, b;
 
-        /* TESTEO CLASE EMPLEADO */
+    /*---------CONSTRUCTORS----------*/
+    public Empresa(Directivo d, Empleado a, Empleado b){
+        this.d = d;
+        this.a = a; this.b = b;
+    }
+    public Empresa(Directivo d, Empleado a, Empleado b, Double ganancias){
+        this.d = d;
+        this.a = a; this.b = b;
+        this.ganancias = ganancias;
+    }
+    /*------END OF CONSTRUCTORS------*/
+
+    /*-----------SETTERS-------------*/
+     public void setGanancias(Double ganancias){
+        this.ganancias = ganancias;
+    }
+    /*--------END OF SETTERS---------*/
+
+    /*-----------GETTERS-------------*/
+    public Double getGanancias(){
+        return this.ganancias;
+    }
+    /*--------END OF SETTERS---------*/
+}
+
+class Ejercicio3{
+    public static void modificarDatos(Empresa e){
+        Scanner sc = new Scanner(System.in);
+        int choice;
+        do{
+            System.out.println("\u001b[2J\u001b[H");
+            System.out.println("---MODIFICAR DATOS---");
+            System.out.println("1.- Modificar datos directivo");
+            System.out.println("2.- Modificar datos empleado");
+            System.out.println("3.- Volver al menu principal");
+            choice = Integer.parseInt(sc.nextLine());
+
+            switch(choice){
+                case 1:
+                    e.d.editar();
+                    break;
+                case 2:
+                    System.out.println("\u001b[2J\u001b[H");
+                    System.out.println("---MODIFICAR EMPLADOS---\n");
+                    System.out.printf("1.- Modificar datos %s\n", e.a.getNombreCompleto());
+                    System.out.printf("2.- Modificar datos %s\n", e.b.getNombreCompleto());
+                    System.out.println("3.- Volver al menu \"MODIFICAR DATOS\"");
+                    int subChoice = Integer.parseInt(sc.nextLine());
+
+                    switch(subChoice){
+                        case 1:
+                            e.a.editar();
+                            break;
+                        case 2:
+                            e.b.editar();
+                            break;
+                        default:
+                            subChoice = 3;
+                            break;
+                    }
+                case 3:
+                    break;
+                default:
+                    System.out.println("Error: opcion inesperada");
+                    break;
+            }
+        }while(choice != 3);
+    }
+
+    public static void mostrarEmpleados(Empresa e) throws InterruptedException{
+        Scanner sc = new Scanner(System.in);
+        int choice;
+
+        do{
+            System.out.println("\u001b[2J\u001b[H");
+            System.out.println("---MOSTRAR DATOS EMPLEADOS---");
+            System.out.println("1.- Mostrar todos los campos");
+            System.out.println("2.- Mostrar campo unico");
+            System.out.println("3.- Volver al menú principal");
+            choice = Integer.parseInt(sc.nextLine());
+
+            switch(choice){
+                case 1:
+                    System.out.println("\u001b[2J\u001b[H");
+                    e.a.mostrar();
+                    System.out.println("-----------------");
+                    e.b.mostrar();
+                    System.out.println("\nVolviendo al menú en 5 segundos...");
+                    Thread.sleep(5000);
+                    break;
+                case 2:
+                    System.out.println("\u001b[2J\u001b[H");
+                    System.out.println("---MOSTRAR CAMPO UNICO---");
+                    System.out.println("1.- Nombre completo");
+                    System.out.println("2.- DNI");
+                    System.out.println("3.- Edad");
+                    System.out.println("4.- Salario anual e IRPF");
+                    System.out.println("5.- Volver a \"MOSTRAR DATOS EMPLEADOS\"");
+                    int subChoice = Integer.parseInt(sc.nextLine());
+
+                    switch(subChoice){
+                        case 1:
+                        case 2:
+                        case 3:
+                        case 4:
+                            System.out.println("\u001b[2J\u001b[H");
+                            e.a.mostrar(subChoice);
+                            System.out.println("-----------------");
+                            e.b.mostrar(subChoice);
+                            System.out.println("\nVolviendo al menú en 5 segundos...");
+                            Thread.sleep(5000);
+                            break;
+                        case 5:
+                            break;
+                    }
+            }
+        }while(choice != 3);
+    }
+
+    public static void main(String[] args) throws InterruptedException{
+        Scanner sc = new Scanner(System.in);
+
+        Directivo d = new Directivo("Alberto", "Paz Garcia", "39492832S", "Pirotecnia", 25);
+        Empleado a = new Empleado("Francisco", "Barcala Garcia", "333666S", 22, 20000.0);
+        Empleado b = new Empleado("Alfonso", "Paz Garcia", "666333S", 21, 32000.0);
+
+        Empresa e = new Empresa(d, a, b, 1000000.0);
+
+        int choice;
+        do{
+            System.out.println("\u001b[2J\u001b[H");
+            System.out.println("---MENU---");
+            System.out.println("1.- Ver datos de los empleados");
+            System.out.println("2.- Ver datos de los directivos");
+            System.out.println("3.- Editar datos");
+            System.out.println("4.- Pagar");
+            System.out.println("5.- Cobrar");
+            System.out.println("6.- Salir");
+            choice = Integer.parseInt(sc.nextLine());
+
+            switch(choice){
+                case 1:     //VER DATOS EMPLEADOS
+                    mostrarEmpleados(e);
+                    break;
+                case 2:     //VER DATOS DIRECTIVO
+                    System.out.println("\u001b[2J\u001b[H");
+                    e.d.mostrar();
+                    System.out.printf("\n\nGanancias reales en euros: %.2f€", e.d.ganancias(e.getGanancias()));
+                    System.out.println("\nVolviendo al menu principal en 3 segundos...");
+                    Thread.sleep(5000);
+                    break;
+                case 3:     //MODIFICAR DATOS
+                    modificarDatos(e);
+                    break;
+                case 4:     //PAGAR
+                    Double salarioEmpleados = e.a.getSalarioAnual() + e.b.getSalarioAnual();
+                    System.out.println("\u001b[2J\u001b[H");
+                    System.out.printf("Se paga un total de %.2f a los empleados.\nGanancias previas: %.2f || Ganancias actuales: %.2f\n", salarioEmpleados, e.getGanancias(), e.getGanancias() - salarioEmpleados);
+                    e.setGanancias(e.getGanancias() - salarioEmpleados);
+                    System.out.println("\nVolviendo al menu principal en 3 segundos...");
+                    Thread.sleep(5000);
+                    break;
+                case 5:     //COBRAR
+                    System.out.println("\u001b[2J\u001b[H");
+                    System.out.println("Intrdouzca la cantidad a cobrar: ");
+                    Double cobro = Double.parseDouble(sc.nextLine());
+                    System.out.printf("Se ha registrado un cobro de %.2f.\nGanancias previas: %.2f || Ganancias actuales: %.2f\n", cobro, e.getGanancias(), e.getGanancias() + cobro);
+                    e.setGanancias(e.getGanancias() + cobro);
+                    System.out.println("\nVolviendo al menu principal en 3 segundos...");
+                    Thread.sleep(5000);
+                    break;
+                case 6:
+                    break;
+                default:
+                    System.out.println("Error: opcion inesperada!");
+                    break;
+            }
+        }while(choice != 6);
+
+        /* 
+        // TESTEO CLASE EMPLEADO
         Empleado e = new Empleado();
         e.editar();
         System.out.println("\u001b[2J\u001b[H");
@@ -290,9 +477,9 @@ class Ejercicio3{
         System.out.println("------------------------------");
         System.out.printf("Hacienda se lleva: %.2f\n", e.hacienda());
         System.out.println("------------------------------");
-        /* END OF CLASE EMPLEADO */
+        // END OF CLASE EMPLEADO 
 
-        /* TESTEO CLASE DIRECTIVO */
+        // TESTEO CLASE DIRECTIVO 
         Directivo d = new Directivo();
         d.editar();
         System.out.println("\u001b[2J\u001b[H");
@@ -300,6 +487,7 @@ class Ejercicio3{
         System.out.println("------------------------------");
         System.out.printf("Obtiene unas ganancias de: %.2f\n", d.ganancias(1000000.0));
         System.out.println("------------------------------");
-        /* END OF CLASE DIRECTIVO */
+        // END OF CLASE DIRECTIVO 
+        */
     }
 }
