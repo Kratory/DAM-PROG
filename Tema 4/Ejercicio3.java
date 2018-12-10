@@ -204,7 +204,7 @@ class Directivo{
     }
 
     public String getDepartamento(){
-        return "\"" + this.departamento + "\"";
+        return "\"" + this.departamento.toUpperCase() + "\"";
     }
 
     public float getBeneficios(){

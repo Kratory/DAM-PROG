@@ -30,11 +30,7 @@ public class ejercicio12{
         boolean gameOver = false;
 
         System.out.println("Tirando dados para jugador...");
-<<<<<<< HEAD
-        int j1 = 8;//tirada();
-=======
         int j1 = tirada();
->>>>>>> b1c24c388d9a94a9cedb41665aac7555cf546b66
         System.out.println("");
 
         if(comprobacion(j1) == 0){
@@ -48,17 +44,10 @@ public class ejercicio12{
 
         if(!gameOver){
             System.out.println("Tirando dados para maquina...");
-<<<<<<< HEAD
-            int j2 = 7;//tirada();
-            System.out.println("");
-
-            if(comprobacion(j2) == 0){
-=======
             int j2 = tirada();
             System.out.println("");
 
             if(comprobacion(j2) == 2){
->>>>>>> b1c24c388d9a94a9cedb41665aac7555cf546b66
                 System.out.println("Gana la maquina!");
             }
             else if(comprobacion(j2) == -1){
@@ -71,8 +60,4 @@ public class ejercicio12{
     
         }
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> b1c24c388d9a94a9cedb41665aac7555cf546b66
