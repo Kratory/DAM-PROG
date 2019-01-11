@@ -6,12 +6,13 @@ class Geometria{
 
     /*---------CONSTRUCTORS----------*/
     public Geometria(){
-        this.figura = true;
-        this.altura = 2; this.base = 2;
+        this.figura = false;
+        this.altura = 2; 
+        this.base = 2;
     }
 
     public Geometria(int altura, int base){
-        this.figura = true;
+        this.figura = false;
         this.altura = altura;
         this.base = base;
     }
@@ -28,30 +29,27 @@ class Geometria{
      * @return area 
      */
     public int area(){
-        int a;
         if(figura)
-            return a = base * altura;
+            return this.base * this.altura;
         else
-            return a = base * base / 2;
+            return this.base * this.altura / 2;
     }
     /**
      * Calucla el perimetro de la figura geometrica.
      * @return perimetro
      */
     public int perimetro(){
-        int p;
         if(figura)
-            return p = 2 * (base + altura);
+            return 2 * (this.base + this.altura);
         else
-            return p = base + altura + hipotenusa();
+            return this.base + this.altura + this.hipotenusa();
     }
     /**
      * Calcula la hipotenusa de un triangulo rectanculo (tambien la diagonal de un rectangulo)
      * @return hipotenusa
      */
     public int hipotenusa(){
-        int c;
-        return c = (int)Math.sqrt(Math.pow(altura, 2) + Math.pow(base, 2));
+        return (int)Math.sqrt(Math.pow(this.altura, 2) + Math.pow(this.base, 2));
     }
 }
 
@@ -84,7 +82,7 @@ public class Ejercicio1{
                         res = Integer.parseInt(sc.nextLine());
                         if(res < 0 || res > 1 ) System.out.println("Error, opcion invalida");
                     }while(res < 0 || res > 1);
-                    boolean figura = res == 0 ? false : true;
+                    boolean figura = res != 0 ;
 
                     System.out.println("Introduce la altura de la figura:");
                     do{

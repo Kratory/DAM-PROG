@@ -44,6 +44,7 @@ class Fecha{
     /*--------END OF SETTERS---------*/
 
     /*--------END OF SETTERS---------*/
+    
     /**
      * Formatea la fecha en una cadena de texto. Valores numericos (flag = 1) / Valores a texto (flag = 0)
      * @param flag Booleano que controla el tipo de formato que se le dará a la fecha. (Texto/Numeros)
@@ -51,7 +52,7 @@ class Fecha{
      */
     public String fechaFormateada(boolean flag){
         if(flag)
-            return "" + this.dia + "/" + this.mes + "/" + this.ano;
+            return  this.dia + "/" + this.mes + "/" + this.ano;
         else{
             String mes = "";
             switch(this.mes){
@@ -126,9 +127,10 @@ class Fecha{
     /**
      * Redondea un objeto Fecha al formato 1/01/XXXX. No actualiza los valores del objeto, solo cuenta cuantos días hay que restrarle para redondearlo.
      * @param a Objeto Fecha que se quiere redondear.
+     * @param flag Booleano que determina si la fecha que se está dando es la primera (más pequeña) o no. Si lo es comprueba que el dia bisiesto no haya pasado, si ha pasado, resta 1. 
      * @return Numeros de dias restados para redondear la fecha.
      */
-    public static int roundFecha(Fecha a){
+    public static int roundFecha(Fecha a, boolean flag){
         int dif = 0;
         for(int i = a.getDia(); i > 1; i--){
             dif++;
@@ -136,6 +138,11 @@ class Fecha{
         for(int i = a.getMes() - 1; i > 1; i--){
             dif += diasMes(i);
         }
+        // AÑADIDO PARA QUE TENGA EN CUENTA SI LA FECHA ORIGEN YA HA PASADO EL DIA BISIESTO
+        if(flag && bisiesto(a.getAno()) && (a.getMes() > 2 || (a.getMes() == 2 && a.getDia() >= 29)))
+            dif--;
+        
+            
         return dif;
     }
 
@@ -143,7 +150,7 @@ class Fecha{
      * Determina si un año dado es bisiesto o no.
      * @param ano Año que se quiere averiguar si es bisiesto o no.
      * @return true Cuando el año es bisiesto.
-     * @return falser Cuando el año no es bisiesto.
+     * @return false Cuando el año no es bisiesto.
      */
     public static boolean bisiesto(int ano){
         if(ano % 4 == 0 && ano % 100 !=0){
@@ -166,7 +173,7 @@ class Fecha{
         int diferencia;
         if(flag){ // Diferencia en dias
             if(a.getAno() > b.getAno()){
-                diferencia = roundFecha(a) + (-roundFecha(b)) + ((a.getAno() - b.getAno()) * 365);
+                diferencia = roundFecha(a, true) + (-roundFecha(b, false)) + ((a.getAno() - b.getAno()) * 365);
                 // ^ Dias que hicieron falta para redondear *a* menos los días que hicieron falta para redondear *b*
                 // Mas 365 por cada año restante.
                 for(int i = a.getAno(); i > b.getAno(); i--){
@@ -174,11 +181,11 @@ class Fecha{
                 }     
             } 
             else{
-                diferencia = -roundFecha(a) + roundFecha(b) + ((b.getAno() - a.getAno()) * 365);
+                diferencia = -roundFecha(a, false) + roundFecha(b, true) + ((b.getAno() - a.getAno()) * 365);
                 for(int i = b.getAno(); i > a.getAno(); i--){
                     if(bisiesto(i)) diferencia++;  // Aumenta la diferencia en 1 por cada año bisiesto entre ambas fechas (incluyendolas).
                 }      
-            }   
+            }
         }else{ // Diferencia en años.
             if(a.getAno() > b.getAno())
                 diferencia = a.getAno() - b.getAno();

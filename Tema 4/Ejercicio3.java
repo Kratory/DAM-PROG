@@ -3,7 +3,7 @@ import java.lang.InterruptedException;
 class Empleado{
     private String nombre, apellidos, dni;
     private int edad;
-    private Double salarioAnual, irpf;
+    private double salarioAnual, irpf;
 
     /*---------CONSTRUCTORS----------*/
     public Empleado(){
@@ -35,6 +35,7 @@ class Empleado{
 
     public void setSalarioAnual(double salarioAnual){
         this.salarioAnual = salarioAnual;
+        irpf();
     }
     /*--------END OF SETTERS---------*/
 
@@ -133,16 +134,14 @@ class Empleado{
         
         System.out.println("Introduzca su salario anual: ");
         setSalarioAnual(Double.parseDouble(sc.nextLine()));
-
-        irpf();
     }
 
     /**
      * Calcula el pago a hacienda en base a salarioAnual y a irpf.
      * @return Cantidad de dinero pagada a haciend, como Double.
      */
-    public Double hacienda(){
-        Double hacienda = getSalarioAnual() * getIrpf() / 100;
+    public double hacienda(){
+        double hacienda = getSalarioAnual() * getIrpf() / 100;
         return hacienda;
     }
 
@@ -273,8 +272,8 @@ class Directivo{
      * @param g Double, ganancias de la empresa.
      * @return Double, ganancias del Directivo.
      */
-    public Double ganancias(Double g){
-        Double ganancias;
+    public double ganancias(double g){
+        double ganancias;
         if(g > 0) 
             ganancias = g * this.beneficios / 100;
         else 
@@ -285,7 +284,7 @@ class Directivo{
 }
 
 class Empresa{
-    private Double ganancias;
+    private double ganancias;
     public Directivo d;
     public Empleado a, b;
 
@@ -294,7 +293,7 @@ class Empresa{
         this.d = d;
         this.a = a; this.b = b;
     }
-    public Empresa(Directivo d, Empleado a, Empleado b, Double ganancias){
+    public Empresa(Directivo d, Empleado a, Empleado b, double ganancias){
         this.d = d;
         this.a = a; this.b = b;
         this.ganancias = ganancias;
@@ -302,13 +301,13 @@ class Empresa{
     /*------END OF CONSTRUCTORS------*/
 
     /*-----------SETTERS-------------*/
-     public void setGanancias(Double ganancias){
+    public void setGanancias(Double ganancias){
         this.ganancias = ganancias;
     }
     /*--------END OF SETTERS---------*/
 
     /*-----------GETTERS-------------*/
-    public Double getGanancias(){
+    public double getGanancias(){
         return this.ganancias;
     }
     /*--------END OF SETTERS---------*/
@@ -452,7 +451,7 @@ class Ejercicio3{
                     modificarDatos(e);
                     break;
                 case 4:     //PAGAR
-                    Double salarioEmpleados = e.a.getSalarioAnual() + e.b.getSalarioAnual();
+                    double salarioEmpleados = e.a.getSalarioAnual() + e.b.getSalarioAnual();
                     System.out.println("\u001b[2J\u001b[H");
                     System.out.printf("Se paga un total de %.2f a los empleados.\nGanancias previas: %.2f || Ganancias actuales: %.2f\n", salarioEmpleados, e.getGanancias(), e.getGanancias() - salarioEmpleados);
                     e.setGanancias(e.getGanancias() - salarioEmpleados);
@@ -462,7 +461,7 @@ class Ejercicio3{
                 case 5:     //COBRAR
                     System.out.println("\u001b[2J\u001b[H");
                     System.out.println("Intrdouzca la cantidad a cobrar: ");
-                    Double cobro = Double.parseDouble(sc.nextLine());
+                    double cobro = Double.parseDouble(sc.nextLine());
                     System.out.printf("Se ha registrado un cobro de %.2f.\nGanancias previas: %.2f || Ganancias actuales: %.2f\n", cobro, e.getGanancias(), e.getGanancias() + cobro);
                     e.setGanancias(e.getGanancias() + cobro);
                     System.out.println("\nVolviendo al menu principal en 3 segundos...");
