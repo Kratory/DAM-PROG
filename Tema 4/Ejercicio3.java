@@ -72,7 +72,7 @@ class Empleado{
     /**
      * Calcula el IRPF en base al salario anual del objeto.
      */
-    private void irpf(){ // PREGUNTAR A CURRO SI ESTA ERA LA SOLUCIÓN A LA AUNSENCIA DE SETTER
+    private void irpf(){ 
         if(this.salarioAnual < 6000)
             this.irpf = 7.5;
         else if(this.salarioAnual < 30000)
