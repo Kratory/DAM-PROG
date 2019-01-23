@@ -49,17 +49,22 @@ public class Texto {
         return reversa;
     }
     
-    public static String pasoAMayusculas(String texto){
+    public static String pasoAMayusculas(String ... textos){
+        String texto = "";
+        for(int i = 0; i < textos.length; i++){
+             texto += textos[i];
+        }
         char[] letras = cadenaAVector(texto);
         String mayus = "";
         
-        // ACABAR
-        
         for(int i = 0; i < letras.length; i++){
-            if(letras[i] == '_')
+            if(letras[i] == '_'  || letras[i] == ' '){
                 letras[i] = ' ';
-            
-            mayus += (char)(letras[i] - 32);
+                mayus += (char)(letras[i]);
+            }
+                
+            if(letras[i] < 122 && letras[i] > 65)
+                mayus += (char)(letras[i] - 32);
         }
         
         return mayus;

@@ -14,6 +14,6 @@ public class Ejercicio4 {
        System.out.println("");
        t.muestraCentrado(t.alReves(string));
        System.out.println("");
-       System.out.printf("%s\n", t.pasoAMayusculas(string));
+       System.out.printf("%s\n", t.pasoAMayusculas(string, "hehe _ hehehe_"));
     }
 }
