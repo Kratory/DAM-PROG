@@ -62,7 +62,7 @@ public class Matriz {
             return suma;
         }
         else{
-            return suma += this.suma() - suma;
+            return this.suma() - suma;
         }
     }
     

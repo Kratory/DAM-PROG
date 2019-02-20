@@ -61,8 +61,10 @@ public class Texto {
                 mayus += (char)(letras[i]);
             }
                 
-            if(letras[i] < 122 && letras[i] > 65)
+            if(letras[i] <= 122 && letras[i] >= 97){
                 mayus += (char)(letras[i] - 32);
+            }
+            else  mayus += (char)(letras[i]);
         }
         
         return mayus;

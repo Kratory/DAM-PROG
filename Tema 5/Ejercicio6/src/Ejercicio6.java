@@ -18,10 +18,10 @@ public class Ejercicio6 {
             System.out.println("6-Salir.");
             
             Scanner sc = new Scanner(System.in);
-            opcion = Integer.parseInt(sc.nextLine());
             do{
                 System.out.println("Introduce una opcion:");
-            }while(opcion < 1 || opcion > 5);
+                opcion = Integer.parseInt(sc.nextLine());
+            }while(opcion < 1 || opcion > 6);
             
             switch(opcion){
                 case 1:
@@ -37,7 +37,11 @@ public class Ejercicio6 {
                     System.out.printf("Suma de todo menos diagonal: %d\n", m.suma(false));
                     break;
                 case 5:
-                    System.out.printf("Suma de fila: %d\n", m.suma(1));
+                    int row = Integer.parseInt(sc.nextLine());
+                    if(row < 0 || row >=  m.matriz.length)
+                        System.out.println("Fila inexistente, fuera de rango");
+                    else
+                        System.out.printf("Suma de fila: %d\n", m.suma(row));
             }
             
         }while(opcion != 6);
