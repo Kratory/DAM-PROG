@@ -16,11 +16,17 @@ class Basicos2{
     }
 
     public static void mostrar(char[][] array){
-        for(int i = 0; i < array.length; i++){
+        for(char[] letra: array){
+            for(char l: letra){
+                System.out.printf("%s, ", l);
+            }
+        }
+
+        /*for(int i = 0; i < array.length; i++){
             for(int j = 0; j < array[i].length; j++){
                 System.out.printf("%s, ", array[i][j]);
             }
-        }
+        }*/
     }
 
     public static char maximo(char[][] array){

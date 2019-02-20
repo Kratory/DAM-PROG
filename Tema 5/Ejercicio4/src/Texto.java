@@ -13,7 +13,7 @@ public class Texto {
     }
     
     public static String subCadena(String texto, int inicio, int longitud){
-        if(inicio < 0 || inicio > texto.length() || (inicio + longitud) > texto.length())
+        if(inicio < 0 ||  (inicio + longitud) > texto.length())
             return " ";
         
         String subcadena = "";
@@ -26,10 +26,8 @@ public class Texto {
     public static void muestraCentrado(String texto){
         int centroCadena = texto.length() / 2;
         int centroConsola = 80 / 2 - centroCadena;  
-        for(int i = 0; i < centroConsola; i++){
-            System.out.printf(" ");
-        }
-        System.out.printf("%s", texto);
+        
+        System.out.printf("%" + (centroConsola + texto.length()) + "s", texto); // Solo printf
     }
     
     public static char[] cadenaAVector(String texto){
@@ -49,7 +47,7 @@ public class Texto {
         return reversa;
     }
     
-    public static String pasoAMayusculas(String ... textos){
+    public static String pasoAMayusculas(String ... textos){ // FIXME 
         String texto = "";
         for(int i = 0; i < textos.length; i++){
              texto += textos[i];
