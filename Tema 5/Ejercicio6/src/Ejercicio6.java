@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class Ejercicio6 {
     public static void main(String[] args){
-        Matriz m = new Matriz(10);
+        Matriz m = new Matriz(3);
         int opcion = 0;
         do{
             System.out.println("1-Mostrar matriz.");
@@ -38,10 +38,7 @@ public class Ejercicio6 {
                     break;
                 case 5:
                     int row = Integer.parseInt(sc.nextLine());
-                    if(row < 0 || row >=  m.matriz.length)
-                        System.out.println("Fila inexistente, fuera de rango");
-                    else
-                        System.out.printf("Suma de fila: %d\n", m.suma(row));
+                    System.out.printf("Suma de fila: %d\n", m.suma(row));
             }
             
         }while(opcion != 6);

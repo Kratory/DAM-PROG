@@ -69,10 +69,10 @@ public class Matriz {
     /**
      * Adds every value on a given row.
      * @param row Row number inside of the matrix.
-     * @return Final value, as integer.
+     * @return Final value, as integer. If there's a range error returns -1.
      */
     public int suma(int row){
-       if(row < 0 || row > this.matriz.length)
+       if(row < 0 || row >= this.matriz.length)
            return -1;
        
        int suma = 0;
