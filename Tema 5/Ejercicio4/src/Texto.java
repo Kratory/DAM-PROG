@@ -2,8 +2,6 @@
  *
  * @author Alberto Paz
  */
-
-
 public class Texto {
     
     public static void muestraEnLinea(String texto){
@@ -14,7 +12,7 @@ public class Texto {
     
     public static String subCadena(String texto, int inicio, int longitud){
         if(inicio < 0 ||  (inicio + longitud) > texto.length())
-            return " ";
+            throw new IllegalArgumentException("Posiciones fuera de limite. Subcadena inexistente.");
         
         String subcadena = "";
         for (int i = 0; i < longitud; i++) {
@@ -24,6 +22,10 @@ public class Texto {
     }
     
     public static void muestraCentrado(String texto){
+//        if(texto.length() > 80)
+//            throw new BufQueLargaException();
+        
+        
         int centroCadena = texto.length() / 2;
         int centroConsola = 80 / 2 - centroCadena;  
         

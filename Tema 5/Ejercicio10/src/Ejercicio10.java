@@ -50,7 +50,6 @@ public class Ejercicio10 {
                             break;
                 }
             }while(ans != 3);
-            
         }
     }
 }

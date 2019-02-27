@@ -10,7 +10,7 @@ public class Ejercicio4 {
         
        t.muestraEnLinea(string);
        System.out.println("");
-       t.muestraCentrado(t.subCadena(string, 14, 7));
+       t.muestraCentrado(t.subCadena(string, 22, 7));
        System.out.println("");
        t.muestraCentrado(t.alReves(string));
        System.out.println("");

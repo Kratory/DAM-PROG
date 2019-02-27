@@ -90,6 +90,7 @@ public class Aula {
         return media / this.notas.length;   
     }
     
+    // ARREGALDO
     /**
      * Calcula la media de las notas de un alumno concreto.
      * @param alumno Alumno del que se quiere obtener la media, como indice.
@@ -97,34 +98,14 @@ public class Aula {
      */
     public float mediaAlumno(int alumno){
         float media = 0;
-        for(int i = 0; i < this.notas.length; i++){
-            media += this.notas[i][alumno];
+        for(int j = 0; j < this.notas[alumno - 1].length; j++){
+            media += this.notas[alumno][j];
         }
         
-        return media / this.notas.length;
+        return media / this.notas[alumno].length;
     }
     
-    /**
-     * Sobrecarga del anterior, calcula la media de las notas de un alumno en concreto.
-     * @param alumno Alumno del que se quiere obtener la media, como string.
-     * @return Media de las notas del alumno, como float.
-     */
-    public float mediaAlumno(String alumno){
-        float media = 0;
-        int index = 0;
-        for(int i = 0; i < this.alumnos.length; i++){
-            if(this.alumnos[i].equals(alumno)){
-                index = i;
-            }
-        }
-        
-        for(int i = 0; i < this.notas.length; i++){
-            media += this.notas[i][index];
-        }
-        
-        return media / this.notas.length;
-    }
-    
+    // ARREGALDO
     /**
      * Obtiene la nota media de una materia, pasada como indice numérico.
      * @param materia Referencia como numero entero a una materia.
@@ -134,12 +115,13 @@ public class Aula {
         float media = 0;
         
         for (int i = 0; i < this.notas.length; i++) {
-            media += this.notas[i][materia];
+            media += this.notas[i][materia - 1];
         }
         
         return media / this.alumnos.length;
     }
     
+    // ARREGALDO
     /**
      * Obtiene la nota máxima de una materia.
      * @param materia Referencia como numero entero a una materia.
@@ -155,13 +137,14 @@ public class Aula {
         return max;
     }
     
+    // ARREGALDO
     /**
      * Obtiene la nota minima de una materia.
      * @param materia Referencia como numero entero a una materia.
      * @return Nota minima de la materia, como int.
      */
     public int notaMin(int materia){
-        int min = 0;
+        int min = 10;
         
         for (int i = 0; i < this.notas.length; i++){
             if(this.notas[i][materia] < min)
