@@ -55,6 +55,8 @@ public class Menu extends JFrame implements ActionListener, ItemListener{
                 reves += old.charAt(i);
             }
             
+            System.out.println(reves);
+            
             int res = JOptionPane.showConfirmDialog(null,"Cambiar el titulo a \"" + reves + "\"?",
                 "??", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         
